@@ -194,12 +194,18 @@ class ContentProductSetDataImportPluginTest extends Unit
      */
     protected function setProductSetQueryReturn(int $idProductSet): void
     {
-        $productSetQueryMock = $this->getMockBuilder(SpyProductSetQuery::class)
-            ->addMethods(['findOneByProductSetKey'])
-            ->getMock();
+        $productSetQueryMock = $this->createMock(SpyProductSetQuery::class);
+        $productSetQueryMock->method('clear')->willReturnSelf();
 
-        $productSetQueryMock->method('findOneByProductSetKey')
-            ->willReturn((new SpyProductSet())->setIdProductSet($idProductSet));
+        $productSetQueryMock
+            ->method('__call')
+            ->willReturnCallback(function ($name) use ($idProductSet) {
+                if ($name === 'findOneByProductSetKey') {
+                    return (new SpyProductSet())->setIdProductSet($idProductSet);
+                }
+
+                return $this;
+            });
 
         $this->tester->setDependency(ContentProductSetDataImportDependencyProvider::PROPEL_QUERY_PRODUCT_SET, $productSetQueryMock);
     }
