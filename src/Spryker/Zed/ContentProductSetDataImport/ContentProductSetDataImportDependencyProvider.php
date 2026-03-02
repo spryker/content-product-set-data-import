@@ -33,11 +33,6 @@ class ContentProductSetDataImportDependencyProvider extends DataImportDependency
      */
     public const PROPEL_QUERY_PRODUCT_SET = 'PROPEL_QUERY_PRODUCT_SET';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -49,11 +44,6 @@ class ContentProductSetDataImportDependencyProvider extends DataImportDependency
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilEncodingService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
@@ -65,11 +55,6 @@ class ContentProductSetDataImportDependencyProvider extends DataImportDependency
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addContentFacade(Container $container): Container
     {
         $container->set(static::FACADE_CONTENT, function (Container $container) {
@@ -79,11 +64,6 @@ class ContentProductSetDataImportDependencyProvider extends DataImportDependency
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addProductQueryContainer(Container $container): Container
     {
         $container->set(static::PROPEL_QUERY_PRODUCT_SET, $container->factory(function () {

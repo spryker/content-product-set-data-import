@@ -41,19 +41,11 @@ class ProductSetKeyToIdStep implements DataImportStepInterface
      */
     protected $productSetQuery;
 
-    /**
-     * @param \Orm\Zed\ProductSet\Persistence\SpyProductSetQuery $productSetQuery
-     */
     public function __construct(SpyProductSetQuery $productSetQuery)
     {
         $this->productSetQuery = $productSetQuery;
     }
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $this->assureDefaultProductSetKeyExists($dataSet);
@@ -120,12 +112,6 @@ class ProductSetKeyToIdStep implements DataImportStepInterface
         return $productSetEntity->getIdProductSet();
     }
 
-    /**
-     * @param string $message
-     * @param array $parameters
-     *
-     * @return \Spryker\Zed\DataImport\Business\Exception\InvalidDataException
-     */
     protected function createInvalidDataImportException(string $message, array $parameters = []): InvalidDataException
     {
         $errorMessage = strtr($message, $parameters);

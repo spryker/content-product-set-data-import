@@ -49,57 +49,36 @@ class ContentProductSetDataImportBusinessFactory extends DataImportBusinessFacto
         return $dataImporter;
     }
 
-    /**
-     * @return \Spryker\Zed\ContentProductSetDataImport\Business\Model\Step\CheckContentDataStep
-     */
     public function createCheckContentDataStep(): CheckContentDataStep
     {
         return new CheckContentDataStep($this->getContentFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\ContentProductSetDataImport\Business\Model\Step\ProductSetKeyToIdStep
-     */
     public function createProductSetKeyToIdStep(): ProductSetKeyToIdStep
     {
         return new ProductSetKeyToIdStep($this->getProductSetQuery());
     }
 
-    /**
-     * @return \Spryker\Zed\ContentProductSetDataImport\Business\Model\Step\PrepareLocalizedItemsStep
-     */
     public function createPrepareLocalizedItemsStep(): PrepareLocalizedItemsStep
     {
         return new PrepareLocalizedItemsStep($this->getUtilEncodingService());
     }
 
-    /**
-     * @return \Spryker\Zed\ContentProductSetDataImport\Business\Model\ContentProductSetWriterStep
-     */
     public function createContentProductSetWriterStep(): ContentProductSetWriterStep
     {
         return new ContentProductSetWriterStep();
     }
 
-    /**
-     * @return \Spryker\Zed\ContentProductSetDataImport\Dependency\Facade\ContentProductSetDataImportToContentInterface
-     */
     public function getContentFacade(): ContentProductSetDataImportToContentInterface
     {
         return $this->getProvidedDependency(ContentProductSetDataImportDependencyProvider::FACADE_CONTENT);
     }
 
-    /**
-     * @return \Spryker\Zed\ContentProductSetDataImport\Dependency\Service\ContentProductSetDataImportToUtilEncodingServiceInterface
-     */
     public function getUtilEncodingService(): ContentProductSetDataImportToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(ContentProductSetDataImportDependencyProvider::SERVICE_UTIL_ENCODING);
     }
 
-    /**
-     * @return \Orm\Zed\ProductSet\Persistence\SpyProductSetQuery
-     */
     public function getProductSetQuery(): SpyProductSetQuery
     {
         return $this->getProvidedDependency(ContentProductSetDataImportDependencyProvider::PROPEL_QUERY_PRODUCT_SET);

@@ -46,18 +46,12 @@ class ContentProductSetDataImportPluginTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function _before(): void
     {
         parent::_before();
         $this->tester->ensureDatabaseTableIsEmpty();
     }
 
-    /**
-     * @return void
-     */
     public function testImportProductSetData(): void
     {
         // Arrange
@@ -76,9 +70,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         $this->tester->assertDatabaseTableContainsData('ps-3');
     }
 
-    /**
-     * @return void
-     */
     public function testImportProductSetDataWithWrongProductSetKeyFails(): void
     {
         // Arrange
@@ -93,9 +84,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         (new ContentProductSetDataImportPlugin())->import($dataImportConfigurationTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testGetImportTypeReturnsTypeOfImporter(): void
     {
         // Arrange
@@ -105,9 +93,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         $this->assertSame(ContentProductSetDataImportConfig::IMPORT_TYPE_CONTENT_PRODUCT_SET, $contentProductSetDataImportPlugin->getImportType());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateLocale(): void
     {
         // Arrange
@@ -127,9 +112,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         $this->tester->assertContentLocalizedHasSetId(46, [static::KEY_ID_PRODUCT_SET => 2]);
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateLocaleFromDefault(): void
     {
         // Arrange
@@ -149,9 +131,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         $this->tester->assertContentLocalizedHasSetId(46, [static::KEY_ID_PRODUCT_SET => 1]);
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateLocaleToDefault(): void
     {
         // Arrange
@@ -171,11 +150,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         $this->tester->assertContentLocalizedDoesNotExist(46);
     }
 
-    /**
-     * @param string $importFilePath
-     *
-     * @return \Generated\Shared\Transfer\DataImporterConfigurationTransfer
-     */
     protected function createConfigurationTransfer(string $importFilePath): DataImporterConfigurationTransfer
     {
         // Arrange
@@ -187,11 +161,6 @@ class ContentProductSetDataImportPluginTest extends Unit
         return $dataImportConfigurationTransfer->setReaderConfiguration($dataImporterReaderConfigurationTransfer);
     }
 
-    /**
-     * @param int $idProductSet
-     *
-     * @return void
-     */
     protected function setProductSetQueryReturn(int $idProductSet): void
     {
         $productSetQueryMock = $this->createMock(SpyProductSetQuery::class);

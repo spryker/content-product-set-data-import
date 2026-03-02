@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\ContentValidationResponseTransfer;
 
 interface ContentProductSetDataImportToContentInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ContentTransfer $contentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ContentValidationResponseTransfer
-     */
     public function validateContent(ContentTransfer $contentTransfer): ContentValidationResponseTransfer;
 }

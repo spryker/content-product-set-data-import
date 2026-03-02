@@ -22,20 +22,12 @@ class PrepareLocalizedItemsStep implements DataImportStepInterface
      */
     protected $utilEncodingService;
 
-    /**
-     * @param \Spryker\Zed\ContentProductSetDataImport\Dependency\Service\ContentProductSetDataImportToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(
         ContentProductSetDataImportToUtilEncodingServiceInterface $utilEncodingService
     ) {
         $this->utilEncodingService = $utilEncodingService;
     }
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $dataSet[AddLocalesStep::KEY_LOCALES] = array_merge($dataSet[AddLocalesStep::KEY_LOCALES], ['default' => null]);

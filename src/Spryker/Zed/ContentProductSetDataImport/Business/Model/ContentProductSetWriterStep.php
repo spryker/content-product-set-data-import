@@ -33,11 +33,6 @@ class ContentProductSetWriterStep extends PublishAwareStep implements DataImport
      */
     protected const CONTENT_TERM_PRODUCT_SET = 'Product Set';
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $contentProductSetEntity = $this->saveContentProductSetEntity($dataSet);
@@ -65,11 +60,6 @@ class ContentProductSetWriterStep extends PublishAwareStep implements DataImport
         );
     }
 
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return \Orm\Zed\Content\Persistence\SpyContent
-     */
     protected function saveContentProductSetEntity(DataSetInterface $dataSet): SpyContent
     {
         $contentProductSetEntity = SpyContentQuery::create()

@@ -25,11 +25,6 @@ class ContentProductSetDataImportToContentBridge implements ContentProductSetDat
         $this->contentFacade = $contentFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ContentTransfer $contentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ContentValidationResponseTransfer
-     */
     public function validateContent(
         ContentTransfer $contentTransfer
     ): ContentValidationResponseTransfer {

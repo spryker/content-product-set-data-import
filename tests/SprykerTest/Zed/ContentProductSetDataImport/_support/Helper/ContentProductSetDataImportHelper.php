@@ -20,9 +20,6 @@ class ContentProductSetDataImportHelper extends Module
      */
     protected $utilEncodingService;
 
-    /**
-     * @return void
-     */
     public function ensureDatabaseTableIsEmpty(): void
     {
         $contentLocalizedQuery = $this->getContentLocalizedQuery();
@@ -45,11 +42,6 @@ class ContentProductSetDataImportHelper extends Module
         $this->assertStringContainsString($this->createUtilEncodingService()->encodeJson($data), $contentLocalized->getParameters());
     }
 
-    /**
-     * @param int $idLocale
-     *
-     * @return void
-     */
     public function assertContentLocalizedDoesNotExist(int $idLocale): void
     {
         $contentLocalized = $this->getContentLocalizedQuery()->findOneByFkLocale($idLocale);
@@ -57,11 +49,6 @@ class ContentProductSetDataImportHelper extends Module
         $this->assertNull($contentLocalized);
     }
 
-    /**
-     * @param string|null $contentKey
-     *
-     * @return void
-     */
     public function assertDatabaseTableContainsData(?string $contentKey = null): void
     {
         $contentQuery = $this->getContentQuery();
@@ -76,25 +63,16 @@ class ContentProductSetDataImportHelper extends Module
         $this->assertTrue(($contentLocalizedQuery->count() > 0), 'Expected at least one entry in the database spy_content_localized table but database table is empty.');
     }
 
-    /**
-     * @return \Orm\Zed\Content\Persistence\SpyContentQuery
-     */
     protected function getContentQuery(): SpyContentQuery
     {
         return SpyContentQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\Content\Persistence\SpyContentLocalizedQuery
-     */
     protected function getContentLocalizedQuery(): SpyContentLocalizedQuery
     {
         return SpyContentLocalizedQuery::create();
     }
 
-    /**
-     * @return \Spryker\Service\UtilEncoding\UtilEncodingServiceInterface
-     */
     protected function createUtilEncodingService(): UtilEncodingServiceInterface
     {
         if (!$this->utilEncodingService) {
